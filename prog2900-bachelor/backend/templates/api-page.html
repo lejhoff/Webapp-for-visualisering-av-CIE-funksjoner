@@ -1,0 +1,442 @@
+<html>
+  <head>
+      <title>CIE Colour Match API</title>
+      <style>
+      body {
+        font-family: Sans-Serif;
+      }
+      </style>
+  </head>
+  <body>
+    <h1> CIE Colour Match API </h1>
+    <h2> Endpoints </h2>
+    <hr>
+    <div>
+      <h3> CIE LMS Cone Fundamentals with optional logarithmic values & 9 significant values: </h3>
+      <ul>
+        <li> <b>Path</b>: <code>'/lms/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+          <li> <code>'log'</code>: Activates logarithmic values for function, use by placing <code>log</code> into <code>optional</code>.</li>
+          <li> <code>'base'</code>: Activates 9 significant figures for function, use by placing <code>base</code> into <code>optional</code>.</li>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./lms/calculation?field_size=1.0&age=64&min=390.0&max=830.0&step_size=0.5&optional=log,base">/lms/calculation?field_size=1.0&age=64&min=390.0&max=830.0&step_size=0.5&optional=log,base</a></li>
+          <li> <a href="./lms/calculation?field_size=2.0&age=23">/lms/calculation?field_size=2.0&age=23</a> </li>
+          <li> <a href="./lms/sidemenu?field_size=2.0&age=23&max=700&min=400">/lms/sidemenu?field_size=2.0&age=23&max=700&min=400</a> </li>
+          <li> <a href="./lms/plot?field_size=2.0&age=23&max=700&min=400">/lms/plot?field_size=2.0&age=23&max=700&min=400</a> </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> MacLeod-Boynton ls chromaticity diagram: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/lms-mb/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'norm'</code>: Normalization coefficients. </li>
+            <li> <code>'white'</code>: Chromaticity point of Illuminant E. </li>
+            <li> <code>'tg_purple'</code>: Tangent points of purple line. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./lms-mb/calculation?field_size=3.0&age=32&min=390.0&max=830.0&step_size=0.75">/lms-mb/calculation?field_size=3.0&age=32&min=390.0&max=830.0&step_size=0.75</a></li>
+          <li> <a href="./lms-mb/calculation?field_size=5&age=21&optional=info">/lms-mb/calculation?field_size=5&age=21&optional=info</a> </li>
+          <li> <a href="./lms-mb/sidemenu?field_size=1.5&age=51&max=700">/lms-mb/sidemenu?field_size=1.5&age=51&max=700</a> </li>
+          <li> <a href="./lms-mb/plot?field_size=1.5&age=51&max=700">/lms-mb/plot?field_size=1.5&age=51&max=700</a> </li>
+
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> Maxwellian lm chromacity diagram: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/lms-mw/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'norm'</code>: Normalization coefficients. </li>
+            <li> <code>'white'</code>: Chromaticity point of Illuminant E. </li>
+            <li> <code>'tg_purple'</code>: Tangent points of purple line. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./lms-mw/calculation?field_size=2.3&age=34&min=390.0&max=830.0&step_size=1.8">/lms-mw/calculation?field_size=2.3&age=34&min=390.0&max=830.0&step_size=1.8</a></li>
+          <li> <a href="./lms-mw/calculation?field_size=1&age=71&optional=info">/lms-mw/calculation?field_size=1&age=71&optional=info</a> </li>
+          <li> <a href="./lms-mw/sidemenu?field_size=4&age=20&">/lms-mw/sidemenu?field_size=4&age=20</a> </li>
+          <li> <a href="./lms-mw/plot?field_size=4&age=20&">/lms-mw/plot?field_size=4&age=20</a> </li>
+
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> CIE cone-fundamental-based XYZ tristimulus functions: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/xyz/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters: (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+            <li> <code>'norm'</code>: Makes all values returned be normalized (including 'info' below), use by placing <code>norm</code> into <code>optional</code>.</li>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'trans_mat'</code>: Transformation matrix of linear transformation LMS --> XYZ. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./xyz/calculation?field_size=4&age=21&min=390.0&max=830.0&step_size=0.2">/xyz/calculation?field_size=4&age=21&min=390.0&max=830.0&step_size=0.2</a></li>
+          <li> <a href="./xyz/sidemenu?field_size=4&age=80&min=400.0&optional=norm">/xyz/sidemenu?field_size=4&age=80&min=400.0&optional=norm</a> </li>
+          <li> <a href="./xyz/calculation?field_size=1.2&age=21&min=390.0&step_size=2.3&optional=info">/xyz/calculation?field_size=1.2&age=21&min=390.0&step_size=2.3&optional=info</a> </li>
+          <li> <a href="./xyz/plot?field_size=1.2&age=21&min=390.0&step_size=2.3&optional=norm">/xyz/plot?field_size=1.2&age=21&min=390.0&step_size=2.3&optional=norm</a> </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> CIE cone-fundamental-based xyz chromaticity coordinates: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/xy/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters: (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+            <li> <code>'norm'</code>: Makes all values returned be normalized (including 'info' below), use by placing <code>norm</code> into <code>optional</code>.</li>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'xyz_white'</code>: Chromaticity point of Illuminant E. </li>
+            <li> <code>'xyz_tg_purple'</code>: Tangent points of the purple line with spectrum locus. </li>
+            <li> <code>'XYZ_tg_purple'</code>: Tristimulus values of tangent points to purple line with spectrum locus. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./xy/calculation?field_size=2&age=21&min=393.0&max=820.0&step_size=0.9">/xy/calculation?field_size=2&age=21&min=393.0&max=820.0&step_size=0.9</a></li>
+          <li> <a href="./xy/sidemenu?field_size=4.9&age=70&step_size=1.3">/xy/sidemenu?field_size=4.9&age=70&step_size=1.3</a> </li>
+          <li> <a href="./xy/calculation?field_size=1.2&age=42&step_size=1.5&optional=info">/xy/calculation?field_size=1.2&age=42&step_size=1.5&optional=info</a> </li>
+          <li> <a href="./xy/plot?field_size=4.9&age=70&step_size=1.3">/xy/plot?field_size=4.9&age=70&step_size=1.3</a> </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> CIE cone-fundamental-based tristimulus functions for purple-line stimuli: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/xyz-p/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters: (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+            <li> <code>'norm'</code>: Makes all values returned be normalized (including 'info' below), use by placing <code>norm</code> into <code>optional</code>.</li>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'trans_mat'</code>: Transformation matrix of linear transformation LMS --> XYZ. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./xyz-p/calculation?field_size=2&age=21&min=392.0&max=825.0&step_size=2.1">/xyz-p/calculation?field_size=2&age=21&min=392.0&max=825.0&step_size=2.1</a></li>
+          <li> <a href="./xyz-p/sidemenu?field_size=1&age=36&min=391.0&step_size=4.1&optional=norm">/xyz-p/sidemenu?field_size=1&age=36&min=391.0&step_size=4.1&optional=norm</a> </li>
+          <li> <a href="./xyz-p/calculation?field_size=2.0&age=20&optional=info">/xyz-p/calculation?field_size=2.0&age=20&optional=info</a> </li>
+          <li> <a href="./xyz-p/plot?field_size=1&age=36&min=391.0&optional=norm">/xyz-p/plot?field_size=1&age=36&min=391.0&step_size=4.1&optional=norm</a> </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> CIE xy cone-fundamental-based chromaticity diagram (purple-line stimuli): </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/xy-p/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: Mandatory, wished field_size between 1.0-20.0, <code>float</code> type. </li>
+          <li> <code>'age'</code>: Mandatory, wished age between 20-80, <code>float</code> type. </li>
+            <li> <code>'min'</code>: Optional, minimum value for domain between 390.0-400.0 nm (default = 390.0), <code>float</code> type.</li>
+          <li> <code>'max'</code>: Optional, maximum value for domain between 700.0-830.0 nm (default = 830.0), <code>float</code> type.</li>
+          <li> <code>'step_size'</code>: Optional, value for step_size between 0.1-5.0 nm (default = 1.0), <code>float</code> type.</li>
+        </ul>
+        <li> <b>Additional parameters: (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+            <li> <code>'norm'</code>: Makes all values returned be normalized (including 'info' below), use by placing <code>norm</code> into <code>optional</code>.</li>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'trans_mat'</code>: Transformation matrix of linear transformation LMS --> XYZ. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./xy-p/calculation?field_size=3.2&age=61&min=395.0&max=820.2&step_size=4.3">/xy-p/calculation?field_size=3.2&age=61&min=395.0&max=820.2&step_size=4.3</a></li>
+          <li> <a href="./xy-p/sidemenu?field_size=2&age=32&optional=norm&min=392.5">/xy-p/sidemenu?field_size=2&age=32&optional=norm&min=392.5</a> </li>
+          <li> <a href="./xy-p/calculation?field_size=2&age=32&info">/xy-p/calculation?field_size=2&age=32&optional=info</a> </li>
+          <li> <a href="./xy-p/plot?field_size=2&age=32&min=392.5">/xy-p/plot?field_size=2&age=32&min=392.5</a> </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> CIE XYZ standard colour-matching functions: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/xyz-std/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: The wished field_size either equal to 2.0 (for 1931 standardizations), or 10.0 (for 1964 standardizations), <code>float</code> type. </li>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./xyz-std/calculation?field_size=2.0">/xyz-std/calculation?field_size=2.0</a></li>
+          <li> <a href="./xyz-std/plot?field_size=10.0">/xyz-std/plot?field_size=10.0</a> </li>
+          <li> <a href="./xyz-std/sidemenu?field_size=10.0">/xyz-std/sidemenu?field_size=10.0</a> </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> CIE XY standard chromaticity diagram: </h3>
+            <ul>
+        <li> <b>Path</b>: <code>'/xy-std/{route}'</code>, where 'route' has to either be: </li>
+        <ul>
+          <li> <code>/calculation</code>: A map containing direct computational results and plot values.</li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>application/json</code>
+          </ul>
+          <li> <code>/sidemenu</code>: A HTML page containing a description about the function. </li>
+           <ul>
+                     <li> <b>Method</b>: GET </li>
+                     <li> <b>Content-Type:</b> <code>text/html</code>
+          </ul>
+          <li> <code>/plot</code>: A HTML page containing an interactable plot of the function. </li>
+          <ul>
+                    <li> <b>Method</b>: GET </li>
+                    <li> <b>Content-Type:</b> <code>text/html</code>
+         </ul>
+        </ul> <br>
+        <li> <b>Parameters</b> (shared between both routes above):</li>
+        <ul>
+          <li> <code>'field_size'</code>: The wished field_size either equal to 2.0 (for 1931 standardizations), or 10.0 (for 1964 standardizations), <code>float</code> type. </li>
+        </ul>
+        <li> <b>Additional parameters (placed as comma-separated list value in "optional" parameter (such as 'optional=log,base,info,norm'): </b></li>
+        <ul>
+          <li> <code>'info'</code>: Returns instead sidemenu information containing the elements below, use by placing <code>info</code> into <code>optional</code>. </li>
+          <ul>
+            <li> <code>'white'</code>: Chromaticity point of Illuminant E. </li>
+            <li> <code>'tg_purple'</code>: Tangent points of purple line. </li>
+          </ul>
+        </ul>
+        <li> <b>Examples: </b></li>
+        <ul>
+          <li> <a href="./xy-std/calculation?field_size=2">/xy-std/calculation?field_size=2</a></li>
+          <li> <a href="./xy-std/sidemenu?field_size=10.0">/xy-std/sidemenu?field_size=10.0</a> </li>
+          <li> <a href="./xy-std/calculation?field_size=10.0&optional=info">/xy-std/calculation?field_size=10.0&optional=info</a> </li>
+          <li> <a href="./xy-std/plot?field_size=2">/xy-std/plot?field_size=2</a></li>
+
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3> STATUS </h3>
+      <ul>
+        <li> <b>Path</b>: /STATUS </li>
+        <li> <b>Method</b>: GET </li>
+        <li> <b>Content-Type</b>: application/json </li>
+        <li> <b>Mandatory Parameters: </b></li>
+        <ul>
+          <li> None are needed. </li>
+        </ul>
+        <li> <b>Example: </b></li>
+        <ul>
+          <li> <a href="./status">/status</a></li>
+        </ul>
+      </ul>
+    </div>
+  </body>
+  
+</html>

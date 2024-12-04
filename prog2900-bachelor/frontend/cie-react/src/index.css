@@ -1,0 +1,92 @@
+/*index.css: Styling for various elements
+
+Copyright (C) 2012-2020 Ivar Farup and Jan Henrik Wold
+Copyright (C) 2024 Bachelor Thesis Group 8
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/.
+*/
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: rgba(0, 0, 0, 1.0);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow:hidden
+}
+
+.outer-container {
+  transform-origin:top left;
+  scale: 0.75;
+  width: 133.33%;
+  height: 50em;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.inner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  height: 108%;
+}
+
+.plo{
+  width: 66.33%;
+  min-width: 900px;
+  height: 108%;
+}
+
+.tab{
+  width: 66.33%;
+  min-width: 900px;
+}
+
+
+.sid {
+  width: 33.67%;
+  height: 133%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (max-height: 910px) {
+  :root{
+    overflow: auto;
+  }
+}
+
+@media (max-width: 1200px) {
+  :root{
+    overflow: auto;
+  }
+  .plo,
+  .tab {
+    width: 100%;
+    margin-right: 5%;
+  }
+  .sid {
+    width: 100%;
+    margin-top: 20px;
+  }
+}

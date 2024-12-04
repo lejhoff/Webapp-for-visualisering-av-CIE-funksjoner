@@ -1,0 +1,8 @@
+sanic
+sanic-cors
+pytest
+numpy
+pandas
+scipy
+requests
+flask-cors

@@ -1,0 +1,85 @@
+/*paramters-form.css: Styling for parameters form
+
+Copyright (C) 2012-2020 Ivar Farup and Jan Henrik Wold
+Copyright (C) 2024 Bachelor Thesis Group 8
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/.
+*/
+.parametersForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 5px;
+  background-color: transparent;
+  color: #ffffff;
+  box-sizing: border-box; 
+}
+
+.parametersControl {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px; 
+}
+
+.formControl {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 9ch; 
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.parameterCard {
+  width: 100%;
+  background-color: #252d4e;
+  padding: 1em;
+  border-radius: 12px;
+}
+
+.parameterLabel {
+  margin-right: 10px;
+}
+
+.labelSpacing {
+  margin-right: 12px;  
+}
+
+.btnPrimary {
+  border-radius: 8px;
+  padding: 0.8em 0.6em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #6a82fb;
+  background-image: linear-gradient(to right, #6a82fb, #fc5c7d);
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  border: 1px solid transparent;
+  margin-right: 10px
+}
+
+.btnPrimary:hover {
+  background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+  border-color: #fff;
+}
+
+.btnPrimary:active {
+  background-color: #535bf2;
+  transform: scale(0.98);
+}
